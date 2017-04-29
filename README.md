@@ -1,5 +1,5 @@
 # optstoic-gams
-optStoic-minFlux/minRxn code for PMID: 26530953d
+optStoic-minFlux/minRxn code for PMID: 26530953
 
 Requirement:
 ===========

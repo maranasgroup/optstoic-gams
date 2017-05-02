@@ -5,16 +5,15 @@ minRxn and minFlux
 Authors: Anupam Chowdhury, Chiam Yu Ng
 
 DESCRIPTION
-The objective of this code (minRxn.gms) is to identify a pathway composed of
-minimal number of reaction (or minimal total flux) that conform to the given stoichiometry.
-Note that minRxn run much slower than minFlux.
+The objective of this code (minFlux.gms) is to identify a pathway with
+minimal total flux that conform to the given stoichiometry.
 
 In this sample code, we use the reaction equation identified using optStoic for
 acetate production from glucose:
                             glucose -> 3 acetate + 3 H+
 
 OUTPUT FILE
-minRxn_output.txt -  a list of reactions constituting the pathway and the flux through
+minFlux_output.txt - a list of reactions constituting the pathway and the flux through
                      each reaction
 
 For more information, please refer to the paper below:
@@ -242,7 +241,7 @@ count       reaction count      /0/
 nstop       terminate loop after nstop-th iteration    /10/
 ;
 
-
+$ontext
 ********************************************************************************
 *                                   minRxn                                     *
 ********************************************************************************
@@ -274,8 +273,8 @@ While( continue = 1,
         );
 );
 putclose file1;
+$offtext
 
-$ontext
 ********************************************************************************
 *                                   minFlux                                    *
 ********************************************************************************
@@ -307,4 +306,3 @@ While( continue = 1,
         );
 );
 putclose file2;
-$offtext

@@ -1,9 +1,10 @@
 # optstoic-gams
-optStoic-minFlux/minRxn code for PMID: 26530953
+optStoic-minFlux/minRxn GAMS code. If you use this code in your work, please cite the following paper: Anupam Chowdhury and Costas D. Maranas,
+"Designing overall stoichiometric conversions and intervening metabolic reactions", Scientific Reports, 2015 (PMID: 26530953).
 
 Requirement:
 ===========
-1. GAMS
+1. GAMS (https://www.gams.com/)
 2. BARON solver
 3. CPLEX solver
 
@@ -15,3 +16,5 @@ Description:
 
 2. minFlux or minRxn
 - An MILP procedure to identify pathway(s) that carry minimal flux or consist of minimal number of reaction that conform to the given reaction stoichiometry.
+
+The reaction and metabolite IDs are derived from the KEGG database (http://www.genome.jp/kegg/).  

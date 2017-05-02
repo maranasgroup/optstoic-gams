@@ -1,6 +1,5 @@
 $Ontext
-
-minRxn and minFlux
+minFlux
 
 Authors: Anupam Chowdhury, Chiam Yu Ng
 
@@ -145,8 +144,6 @@ con4(j)..       x(j) =g= -v(j);
 con5(k)$(active(k) = 1)..   sum(j$(store(k,j) = 1), 1 - y(j)) =g= 1;
 con6..          sum(j, y(j)) =l= 12;
 
-*con5(k)..   sum(j$(store(k,j) = 0), y(j)) + sum(j$(store(k,j) = 1), 1 - y(j)) =g= 1 ;
-
 **************************************************
 Scalar
 vmax            maximum flux value  /1000/;
@@ -241,40 +238,6 @@ count       reaction count      /0/
 nstop       terminate loop after nstop-th iteration    /10/
 ;
 
-$ontext
-********************************************************************************
-*                                   minRxn                                     *
-********************************************************************************
-File file1 /minRxn_output.txt/;
-Put file1;
-
-Put "*** minimum set of reactions assuring 100% conversion"//;
-
-While( continue = 1,
-        Solve minrxn Using mip Minimizing zr;
-        n = n + 1;
-        count = 0;
-        put "iteration no: ", n/;
-        put "total number of reaction: ", zr.l/;
-        put "modelstat: ", minrxn.modelstat/;
-
-        loop(j$(y.l(j) = 1),
-            store(k, j)$(ord(k) = n) = 1;
-            put "'"j.tl"'", @50, v.l(j):0:8/;
-            count = count + 1;
-        );
-        put "no. of rxns: ", count/;
-        put "***************"//;
-
-        active(k)$(ord(k) = n) = 1;
-
-        if(n gt nstop or (minrxn.modelstat ne 1 and minrxn.modelstat ne 8),
-                continue = 0;
-        );
-);
-putclose file1;
-$offtext
-
 ********************************************************************************
 *                                   minFlux                                    *
 ********************************************************************************
@@ -287,6 +250,8 @@ While( continue = 1,
         Solve minflux Using mip Minimizing zf;
         n = n + 1;
         count = 0;
+
+        /*Write the solution to output file*/
         put "iteration no: ", @30, n/;
         put "sum of fluxes: ", @30, zf.l/;
         put "modelstat: ", @30, minflux.modelstat/;
@@ -299,8 +264,10 @@ While( continue = 1,
         put "no. of rxns: ", @30, count/;
         put "***************"//;
 
+        /*Turn on the integer cut constraint at the next iteration*/
         active(k)$(ord(k) = n) = 1;
 
+        /*Stop the program if model status is not optimal or not an integer solution*/
         if(n gt nstop or (minflux.modelstat ne 1 and minflux.modelstat ne 8),
                 continue = 0;
         );

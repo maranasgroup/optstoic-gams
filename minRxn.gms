@@ -1,5 +1,7 @@
 $Ontext
 
+minRxn and minFlux
+
 Authors: Anupam Chowdhury, Chiam Yu Ng
 
 DESCRIPTION
@@ -16,6 +18,11 @@ minRxn_output.txt -  a list of reactions constituting the pathway and the flux t
                      each reaction
 minFlux_output.txt - a list of reactions constituting the pathway and the flux through
                      each reaction
+
+For more information, please refer to the paper below:
+Anupam Chowdhury and Costas D. Maranas
+"Designing overall stoichiometric conversions and intervening metabolic reactions"
+Scientific Reports, 2015
 $Offtext
 
 $INLINECOM /*  */
@@ -227,6 +234,9 @@ con5
 minrxn.optfile = 1;
 minrxn.holdfixed = 1;
 
+minflux.optfile = 1;
+minflux.holdfixed = 1;
+
 Scalar
 continue    continue while loop /1/
 n           current iteration   /0/
@@ -234,7 +244,7 @@ count       reaction count      /0/
 nstop       terminate loop after nstop-th iteration    /10/
 ;
 
-$ontext
+
 ********************************************************************************
 *                                   minRxn                                     *
 ********************************************************************************
@@ -267,7 +277,6 @@ While( continue = 1,
 );
 putclose file1;
 
-$offtext
 
 ********************************************************************************
 *                                   minFlux                                    *

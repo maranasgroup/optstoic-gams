@@ -1,4 +1,5 @@
 $Ontext
+optStoic
 
 Authors: Anupam Chowdhury, Chiam Yu Ng
 
@@ -13,6 +14,10 @@ OUTPUT FILE
 optStoic_output.csv - a comma-separated list of model status, metabolites and stoichiometric
                         coefficients, the standard Gibbs free energy of reaction.
 
+For more information, please refer to the paper below:
+Anupam Chowdhury and Costas D. Maranas
+"Designing overall stoichiometric conversions and intervening metabolic reactions"
+Scientific Reports, 2015
 $Offtext
 
 $INLINECOM /*  */

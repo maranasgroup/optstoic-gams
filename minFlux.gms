@@ -32,7 +32,6 @@ options
     iterlim = 100000
     decimals = 8
     reslim = 1200
-    work = 50000000
     mip = cplex;
 
 ***************************************************
